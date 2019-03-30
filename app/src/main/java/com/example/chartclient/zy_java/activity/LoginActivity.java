@@ -117,7 +117,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         jsonObject.put("qq", qq);
         jsonObject.put("password", password);
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://234b13j093.imwork.net:55864/api/send_qq_password", jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://47.94.218.85:8080/ChartServer/send_qq_password", jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 try {

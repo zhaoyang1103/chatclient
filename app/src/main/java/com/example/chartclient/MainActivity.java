@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         try {
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("user", s);
-            JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://234b13j093.imwork.net:55864/api/send_message", jsonObject, new Response.Listener<JSONObject>() {
+            JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://47.94.218.85:8080/ChartServer/send_message", jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Gson gson = new Gson();

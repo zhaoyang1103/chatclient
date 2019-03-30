@@ -92,7 +92,7 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
         try {
             jsonObject.put("qq_1", my_qq);
             jsonObject.put("qq_2", friendqq);
-            JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://234b13j093.imwork.net:55864/api/get_person_message", jsonObject, new Response.Listener<JSONObject>() {
+            JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://47.94.218.85:8080/ChartServer/get_person_message", jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Gson gson = new Gson();
@@ -159,7 +159,7 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
             jsonObject.put("qq_2", friendqq);
             jsonObject.put("message_1", data + ":" + my_qq);
             jsonObject.put("message_2", "");
-            JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://234b13j093.imwork.net:55864/api/send_person_message", jsonObject, new Response.Listener<JSONObject>() {
+            JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://47.94.218.85:8080/ChartServer/send_person_message", jsonObject, new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject jsonObject) {
                     Log.i("sad", "onResponse: "+"数据发送成功");

@@ -90,7 +90,7 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
 
     private void getQQFriendLine() {
         JSONObject object = new JSONObject();
-        JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://234b13j093.imwork.net:55864/api/get_qq_friend", object, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://47.94.218.85:8080/ChartServer/get_qq_friend", object, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Gson gson = new Gson();
