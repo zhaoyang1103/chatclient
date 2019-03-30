@@ -209,7 +209,7 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
             if (list_data.get(position).getMessage_1().contains(my_qq + "")) {
                 viewHolder.tx_my_message.setText(split[0] + "：我");
             } else {
-                viewHolder.tx_friend_message.setText(friendname + split[0]);
+                viewHolder.tx_friend_message.setText(friendname+":" + split[0]);
             }
 
             return convertView;

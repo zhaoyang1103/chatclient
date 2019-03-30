@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.chartclient.MainActivity;
 import com.example.chartclient.R;
 import com.example.chartclient.zy_java.bean.BigFriendsBean;
 import com.example.chartclient.zy_java.bean.UserBean;
@@ -30,7 +32,7 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MyQQAcitivity extends AppCompatActivity {
+public class MyQQAcitivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tx_qqshow;
     private ListView lv_friend;
@@ -41,6 +43,7 @@ public class MyQQAcitivity extends AppCompatActivity {
     private FriendAdapter friendAdapter;
     private List<BigFriendsBean.FriendsBean> friends;
     private Timer timer;
+    private Button bt_stword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +78,8 @@ public class MyQQAcitivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        bt_stword = (Button) findViewById(R.id.bt_stword);
+        bt_stword.setOnClickListener(this);
     }
 
     @Override
@@ -115,6 +120,16 @@ public class MyQQAcitivity extends AppCompatActivity {
         requestQueue.add(request);
     }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bt_stword:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                break;
+        }
+    }
+
     class FriendAdapter extends BaseAdapter {
         @Override
         public int getCount() {
@@ -153,7 +168,6 @@ public class MyQQAcitivity extends AppCompatActivity {
                 this.tx_qqname = (TextView) rootView.findViewById(R.id.tx_qqname);
                 this.tx_qq = (TextView) rootView.findViewById(R.id.tx_qq);
             }
-
         }
     }
 }

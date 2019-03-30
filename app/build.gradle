@@ -33,4 +33,7 @@ dependencies {
     implementation files('libs/commons-logging-1.2.jar')
     implementation files('libs/fastjson-1.2.31.jar')
     implementation files('libs/eventbus-3.0.0.jar')
+    implementation files('libs/okhttp-3.11.0.jar')
+    implementation files('libs/okio-1.16.0.jar')
+    implementation files('libs/zxing-3.2.1.jar')
 }

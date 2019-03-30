@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         }
 
-        // TODO validate success, do something
+        // TODO validate success, do something///
 
 
     }
@@ -145,9 +145,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
         requestQueue.add(jsonObjectRequest);
 
-
     }
-
 
     private void loginDeal(final String qq, final String passwrod) {
         new Thread() {
