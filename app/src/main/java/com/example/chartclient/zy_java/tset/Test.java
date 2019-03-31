@@ -10,11 +10,15 @@ import java.util.List;
  */
 public class Test {
     public static void main(String[] args) {
-        UserNameDao dao=new UserNameDao();
+        UserNameDao dao = new UserNameDao();
+//        UserBean bean = new UserBean();
+//        bean.setGrade("100级");
+//        bean.setName("小沟");
+//        bean.setPassword("123123");
+//        int i = dao.regedit(bean);
+//        System.out.println(i + "");
         List<UserBean> userBean = dao.getUserBean(1001);
-      if(userBean.size()>0)
-      {
-          System.out.println(userBean.get(0).getPassword()+"");
-      }
+        System.out.println(userBean.get(0).getName() + "");
+
     }
 }

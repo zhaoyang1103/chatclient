@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E9BEBE"
+    android:background="@drawable/backfriendshow"
     android:orientation="vertical">
 
     <LinearLayout
@@ -17,11 +17,26 @@
             android:text="1001的好友"
             android:textColor="#1B3AC5"
             android:textSize="20dp" />
+
         <Button
             android:id="@+id/bt_stword"
             android:layout_width="wrap_content"
-            android:text="打开世界功能"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:text="打开世界功能" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/ed_find"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:hint="搜索好友(qq)"
+            android:singleLine="true" />
     </LinearLayout>
 
     <View

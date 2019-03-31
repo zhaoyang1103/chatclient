@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -34,6 +37,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText ed_passwrod;
     private Button login;
     private RequestQueue requestQueue;
+    private CheckBox cheeck;
+    private CheckBox cheeck_savepass;
+    private Button regedit;
+    private TextView te_change_password;
+    private TextView te_foriget_password;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +56,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         login = (Button) findViewById(R.id.login);
         EventBus.getDefault().register(this);
         login.setOnClickListener(this);
+        cheeck_savepass = (CheckBox) findViewById(R.id.cheeck_savepass);
+        cheeck_savepass.setOnClickListener(this);
+        regedit = (Button) findViewById(R.id.regedit);
+        regedit.setOnClickListener(this);
 
         StrictMode.ThreadPolicy build = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(build);
+
+
+        cheeck = (CheckBox) findViewById(R.id.cheeck);
+        cheeck.setOnClickListener(this);
+        cheeck.setChecked(Util.getcheck(LoginActivity.this));
+        if (cheeck.isChecked()) {
+            submit();
+        }
+        cheeck_savepass.setChecked(Util.getcheck_pass(LoginActivity.this));
+        if (cheeck_savepass.isChecked()) {
+            if (Util.getUser(LoginActivity.this) != null) {
+                ed_qq.setText(Util.getUser(LoginActivity.this).getQq() + "");
+                ed_passwrod.setText(Util.getUser(LoginActivity.this).getPassword());
+            }
+        }
+
+
+        cheeck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Util.saveCheck(isChecked, LoginActivity.this);
+            }
+        });
+        cheeck_savepass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Util.saveCheck_pass(isChecked, LoginActivity.this);
+            }
+        });
+
+
+        te_change_password = (TextView) findViewById(R.id.te_change_password);
+        te_change_password.setOnClickListener(this);
+        te_foriget_password = (TextView) findViewById(R.id.te_foriget_password);
+        te_foriget_password.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +105,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.login:
                 submit();
+                break;
+            case R.id.regedit:
+                Intent intent = new Intent(this, RegeditActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.te_change_password:
+                Intent intent1 = new Intent(this, Change_Activity.class);
+                startActivity(intent1);
+                break;
+            case R.id.te_foriget_password:
+                Toast.makeText(this, "此功能暂未与手机短信第三方签署协议", Toast.LENGTH_SHORT).show();
                 break;
         }
     }

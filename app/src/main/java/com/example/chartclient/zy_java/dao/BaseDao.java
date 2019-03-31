@@ -26,7 +26,7 @@ public class BaseDao {
 	private static String USERNAME = "root";
 	private static String PASSWORD = "123456";
 	private static String url = "jdbc:mysql://104.37.212.97:3306/daikuan";
-	private static String URL = "jdbc:mysql://234b13j093.imwork.net:3306/qqdata?useUnicode=true&characterEncoding=utf8";
+	private static String URL = "jdbc:mysql://47.94.218.85/qqdata?useUnicode=true&characterEncoding=utf8";
 	static{
 		try {
 			Class.forName(DRIVER_CLASS);

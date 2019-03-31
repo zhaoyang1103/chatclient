@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
         requestQueue.add(request);
 
-
     }
 
     @Override
@@ -113,10 +112,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // validate
         String textString = text.getText().toString().trim();
         if (TextUtils.isEmpty(textString)) {
-            Toast.makeText(this, "聊天框", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "聊天框为空", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            Toast.makeText(this, "测试", Toast.LENGTH_SHORT).show();
+
             sendData();
         }
 
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError volleyError) {
-                    Toast.makeText(MainActivity.this, "失败" + volleyError.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "网络可能出小差了噢" , Toast.LENGTH_SHORT).show();
                     Log.i("失败", "onErrorResponse: " + volleyError.toString());
                 }
             });

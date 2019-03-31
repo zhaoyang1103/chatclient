@@ -57,7 +57,7 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
         tx_qqshow = (TextView) findViewById(R.id.tx_qqshow);
         lv_friend = (ListView) findViewById(R.id.lv_friend);
         myuser = Util.getUser(MyQQAcitivity.this).getQq() + "";
-        tx_qqshow.setText(myuser + "的QQ在线");
+
         requestQueue = Volley.newRequestQueue(context);
         getQQFriendLine();
         friendAdapter = new FriendAdapter();
@@ -97,8 +97,11 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
                 BigFriendsBean bigFriendsBean = gson.fromJson(jsonObject.toString(), BigFriendsBean.class);
                 friends = bigFriendsBean.getFriends();
                 UserBean user = Util.getUser(context);
+
                 for (int i = 0; i < friends.size(); i++) {
                     if (friends.get(i).getQq() == user.getQq()) {
+                        tx_qqshow.setText(myuser + "(" + friends.get(i).getName() + ")" + "的QQ在线" + "--" + friends.get(i).getGrade());
+
                         friends.remove(i);
                     }
 
@@ -151,7 +154,7 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
             convertView = View.inflate(context, R.layout.item_friend, null);
             ViewHolder viewHolder = new ViewHolder(convertView);
             viewHolder.tx_qq.setText(friends.get(position).getQq() + "");
-            viewHolder.tx_qqname.setText(friends.get(position).getName());
+            viewHolder.tx_qqname.setText(friends.get(position).getName() + "--" + friends.get(position).getGrade());
             return convertView;
         }
 
