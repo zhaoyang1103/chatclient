@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +32,7 @@ import com.google.gson.Gson;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -44,6 +49,7 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
     private List<BigFriendsBean.FriendsBean> friends;
     private Timer timer;
     private Button bt_stword;
+    private EditText ed_find;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +86,36 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
         });
         bt_stword = (Button) findViewById(R.id.bt_stword);
         bt_stword.setOnClickListener(this);
+        ed_find = (EditText) findViewById(R.id.ed_find);
+        ed_find.setOnClickListener(this);
+        ed_find.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String s1 = s.toString();
+                for (int i = 0; i < friends.size(); i++) {
+                    if (s1.contains(friends.get(i).getQq() + "")) {
+                        List<BigFriendsBean.FriendsBean> a = new ArrayList<>();
+                        a.add(new BigFriendsBean.FriendsBean(friends.get(i).getGrade(), friends.get(i).getName(), friends.get(i).getPassword(), friends.get(i).getQq()));
+                        friends = a;
+                        friendAdapter.notifyDataSetChanged();
+                    }
+                }
+                if (s1.equals(null) || s1.equals("")) {
+                    getQQFriendLine();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -109,8 +145,6 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
 
                 lv_friend.setAdapter(friendAdapter);
                 friendAdapter.notifyDataSetChanged();
-
-
             }
         }
                 , new Response.ErrorListener() {
@@ -130,7 +164,24 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.ed_find:
+
+
+                break;
         }
+    }
+
+    private void submit() {
+        // validate
+        String find = ed_find.getText().toString().trim();
+        if (TextUtils.isEmpty(find)) {
+            Toast.makeText(this, "搜索好友(qq)", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // TODO validate success, do something
+
+
     }
 
     class FriendAdapter extends BaseAdapter {

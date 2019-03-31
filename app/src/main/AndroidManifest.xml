@@ -8,18 +8,26 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/xiaozhu"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/xiaozhu"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".zy_java.activity.Change_Activity"></activity>
-        <activity android:name=".zy_java.activity.RegeditActivity" />
-        <activity android:name=".zy_java.activity.ZxingActivity" />
+        <activity
+            android:name=".zy_java.activity.Change_Activity"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".zy_java.activity.RegeditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".zy_java.activity.ZxingActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".zy_java.activity.PeronActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".zy_java.activity.MyQQAcitivity" />
+        <activity
+            android:name=".zy_java.activity.MyQQAcitivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".zy_java.activity.LoginActivity"
             android:screenOrientation="portrait">

@@ -30,6 +30,13 @@ public class BigFriendsBean {
         private String password;
         private int qq;
 
+        public FriendsBean(String grade, String name, String password, int qq) {
+            this.grade = grade;
+            this.name = name;
+            this.password = password;
+            this.qq = qq;
+        }
+
         public String getGrade() {
             return grade;
         }
