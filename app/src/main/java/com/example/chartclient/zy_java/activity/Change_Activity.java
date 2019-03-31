@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.chartclient.R;
 import com.example.chartclient.zy_java.bean.UserBean;
 import com.example.chartclient.zy_java.dao.UserNameDao;
+import com.example.chartclient.zy_java.util.ProDiaBar;
 
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Change_Activity extends AppCompatActivity implements View.OnClickLi
     private Button bt_change_change;
     private UserNameDao dao;
     private EditText ed_newname;
+    private ProDiaBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class Change_Activity extends AppCompatActivity implements View.OnClickLi
         dao = new UserNameDao();
         ed_newname = (EditText) findViewById(R.id.ed_newname);
         ed_newname.setOnClickListener(this);
+        bar = new ProDiaBar(Change_Activity.this);
     }
 
     @Override
@@ -94,12 +97,15 @@ public class Change_Activity extends AppCompatActivity implements View.OnClickLi
                 Toast.makeText(this, "原密码输入有误", Toast.LENGTH_SHORT).show();
                 return;
             } else {
+                bar.show();
                 int i = dao.change_pass(Integer.parseInt(qq), newpasswrod, newname);
                 if (i > 0) {
                     Toast.makeText(this, "修改成功", Toast.LENGTH_SHORT).show();
+                    bar.diss();
                     finish();
                 } else {
                     Toast.makeText(this, "修改失败", Toast.LENGTH_SHORT).show();
+                    bar.diss();
                 }
             }
 

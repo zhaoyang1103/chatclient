@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.jia:
-                        myDialog.show();
+                        myDialog.showMoneyDialog_kong();
                         break;
                 }
                 return false;
@@ -103,10 +103,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     class MyDialog {
         AlertDialog.Builder builder;
 
-        public void showMoneyDialog_kong() {
+        public MyDialog() {
             builder = new AlertDialog.Builder(MainActivity.this);
+
+        }
+
+        public void showMoneyDialog_kong() {
             View view = View.inflate(MainActivity.this, R.layout.dialogview, null);
             builder.setView(view);
+
             builder.setNegativeButton("狠心取消", null);
             final ViewHolder viewHolder = new ViewHolder(view);
             viewHolder.tx_weixn.setOnClickListener(new View.OnClickListener() {
@@ -127,12 +132,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
             });
-
+            builder.show();
 
         }
 
         public void show() {
-            builder.show();
+
         }
 
 

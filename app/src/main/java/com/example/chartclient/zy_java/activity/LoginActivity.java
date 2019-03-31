@@ -21,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.chartclient.R;
 import com.example.chartclient.zy_java.bean.UserBean;
 import com.example.chartclient.zy_java.dao.UserNameDao;
+import com.example.chartclient.zy_java.util.ProDiaBar;
 import com.example.chartclient.zy_java.util.Util;
 
 import org.greenrobot.eventbus.EventBus;
@@ -42,6 +43,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button regedit;
     private TextView te_change_password;
     private TextView te_foriget_password;
+    private ProDiaBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
+        bar = new ProDiaBar(LoginActivity.this);
+
         ed_qq = (EditText) findViewById(R.id.ed_qq);
         ed_passwrod = (EditText) findViewById(R.id.ed_passwrod);
         login = (Button) findViewById(R.id.login);
@@ -68,9 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         cheeck = (CheckBox) findViewById(R.id.cheeck);
         cheeck.setOnClickListener(this);
         cheeck.setChecked(Util.getcheck(LoginActivity.this));
-        if (cheeck.isChecked()) {
-            submit();
-        }
+
         cheeck_savepass.setChecked(Util.getcheck_pass(LoginActivity.this));
         if (cheeck_savepass.isChecked()) {
             if (Util.getUser(LoginActivity.this) != null) {
@@ -98,6 +100,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         te_change_password.setOnClickListener(this);
         te_foriget_password = (TextView) findViewById(R.id.te_foriget_password);
         te_foriget_password.setOnClickListener(this);
+        if (cheeck.isChecked()) {
+            submit();
+        }
     }
 
     @Override
@@ -156,7 +161,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            loginDeal(qq, passwrod);
+//            loginDeal(qq, passwrod);
             try {
                 login(Integer.parseInt(qq), passwrod);
             } catch (JSONException e) {
@@ -171,6 +176,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     private synchronized void login(final int qq, final String password) throws JSONException {
+        bar.show();
         requestQueue = Volley.newRequestQueue(LoginActivity.this);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("qq", qq);
@@ -190,15 +196,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     } else {
                         Toast.makeText(LoginActivity.this, "用户名密码不对", Toast.LENGTH_SHORT).show();
 
-                    }
+                    }                        bar.diss();
+
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    bar.diss();
+
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(LoginActivity.this, "亲可能数据没有开哦", Toast.LENGTH_SHORT).show();
+                bar.diss();
 
             }
         });
