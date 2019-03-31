@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2196F3"
+        tools:targetApi="lollipop"></android.support.v7.widget.Toolbar>
+
     <ListView
-        android:divider="@null"
         android:id="@+id/lv_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/lin"></ListView>
+        android:layout_above="@+id/lin"
+        android:layout_below="@+id/toolbar"
+        android:divider="@null"></ListView>
 
     <LinearLayout
         android:id="@+id/lin"
