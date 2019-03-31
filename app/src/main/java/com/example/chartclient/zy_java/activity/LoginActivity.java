@@ -156,7 +156,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
             return;
         } else {
-//            loginDeal(qq, passwrod);
+            loginDeal(qq, passwrod);
             try {
                 login(Integer.parseInt(qq), passwrod);
             } catch (JSONException e) {
