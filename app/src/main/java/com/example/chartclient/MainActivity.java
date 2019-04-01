@@ -1,5 +1,7 @@
 package com.example.chartclient;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +27,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.chartclient.zy_java.util.Image_Util;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -93,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case R.id.jia:
                         myDialog.showMoneyDialog_kong();
                         break;
+                    case R.id.home:
+                        finish();
+                        break;
                 }
                 return false;
             }
@@ -130,6 +136,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     viewHolder.tx_weixn.setBackgroundColor(Color.parseColor("#FF4CAF50"));
                     viewHolder.tx_zhifubao.setBackgroundResource(R.drawable.zhifubaoback);
 
+                }
+            });
+            final Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.kongweixin);
+            viewHolder.image_qina.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Image_Util.saveBmp2Gallery(MainActivity.this, bitmap, "wei.png");
+                    return false;
                 }
             });
             builder.show();
