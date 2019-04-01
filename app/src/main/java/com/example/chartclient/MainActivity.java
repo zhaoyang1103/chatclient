@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter = new Lv_Adapter();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         lv_list.setAdapter(adapter);
         timer = new Timer();
         random = new Random();
@@ -96,11 +97,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case R.id.jia:
                         myDialog.showMoneyDialog_kong();
                         break;
-                    case R.id.home:
+                    case android.R.id.home:
+                        Toast.makeText(MainActivity.this, "返回个人中心", Toast.LENGTH_SHORT).show();
                         finish();
+
                         break;
                 }
-                return false;
+                return true;
             }
         });
 
@@ -147,10 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             });
             builder.show();
-
-        }
-
-        public void show() {
 
         }
 
