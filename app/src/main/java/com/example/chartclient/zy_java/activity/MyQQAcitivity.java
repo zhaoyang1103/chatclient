@@ -73,7 +73,7 @@ public class MyQQAcitivity extends AppCompatActivity implements View.OnClickList
             public void run() {
                 getQQFriendLine();
             }
-        }, 0, 60000);
+        }, 0, 6000);
 
         lv_friend.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

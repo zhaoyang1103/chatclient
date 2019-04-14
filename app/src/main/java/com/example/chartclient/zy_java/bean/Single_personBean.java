@@ -1,5 +1,6 @@
 package com.example.chartclient.zy_java.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +30,39 @@ public class Single_personBean {
         private String message_2;
         private int qq_1;
         private int qq_2;
+        private static List<DataBean> datataBean = new ArrayList<>();
+        private  static  DataBean  mybean=new DataBean();
+
+        public static DataBean getMybean() {
+            return mybean;
+        }
+
+        public static void setMybean(DataBean mybean) {
+            DataBean.mybean = mybean;
+        }
+
+        public static List<DataBean> getDatataBean() {
+            return datataBean;
+        }
+
+        public static void setDatataBean(List<DataBean> datataBean) {
+            DataBean.datataBean = datataBean;
+        }
+
+        public DataBean(String message_1, String message_2, int qq_1, int qq_2) {
+            this.message_1 = message_1;
+            this.message_2 = message_2;
+            this.qq_1 = qq_1;
+            this.qq_2 = qq_2;
+        }
+
+        public DataBean() {
+        }
+
+        public DataBean(int qq_1, int qq_2) {
+            this.qq_1 = qq_1;
+            this.qq_2 = qq_2;
+        }
 
         public String getMessage_1() {
             return message_1;

@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initView() {
-
         text = (EditText) findViewById(R.id.text);
         bt_send = (Button) findViewById(R.id.bt_send);
         lin = (LinearLayout) findViewById(R.id.lin);

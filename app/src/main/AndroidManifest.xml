@@ -13,9 +13,14 @@
         android:roundIcon="@mipmap/xiaozhu"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service
+            android:name=".zy_java.DataServer"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".zy_java.activity.Change_Activity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".zy_java.activity.RegeditActivity"
             android:screenOrientation="portrait" />
