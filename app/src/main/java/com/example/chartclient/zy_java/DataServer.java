@@ -33,7 +33,7 @@ public class DataServer extends Service {
 
     @Override
     public void onCreate() {
-        Toast.makeText(this, "服务已经启动", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "简易服务已经启动", Toast.LENGTH_SHORT).show();
         timer = new Timer();
         requestQueue = Volley.newRequestQueue(this);
 
@@ -42,6 +42,7 @@ public class DataServer extends Service {
 
     @Override
     public void onDestroy() {
+        Toast.makeText(this, "简易服务已经关闭", Toast.LENGTH_SHORT).show();
         super.onDestroy();
     }
 
@@ -50,20 +51,21 @@ public class DataServer extends Service {
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                getSingle(intent);
 
+                getSingle(intent);
             }
-        },0,1000);
+        }, 0, 500);
 
         return super.onStartCommand(intent, flags, startId);
     }
 
     private void getSingle(Intent intent) {
-        String singleChat = intent.getStringExtra("singleChat");
-        if (singleChat.equals("singleChat")) {
-            initSingleChat();
-        }
+//        String singleChat = intent.getStringExtra("singleChat");
+//        if (singleChat.equals("singleChat")) {
+        initSingleChat();
+//        }
     }
+
 
     private void initSingleChat() {
         JSONObject jsonObject = new JSONObject();
@@ -87,8 +89,5 @@ public class DataServer extends Service {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
     }
-
-
 }

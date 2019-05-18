@@ -75,10 +75,11 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
         lin = (LinearLayout) findViewById(R.id.lin);
         bt_send.setOnClickListener(this);
         list_data = new ArrayList<>();
+//        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("yyyy年MM月yyy");
         requestQueue = Volley.newRequestQueue(PeronActivity.this);
         initFriends();
         initAdapter();
-        startServer();
+//        startServer();
         initTimer();
     }
 
@@ -90,7 +91,7 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
                 list_data = Single_personBean.DataBean.getDatataBean();
                 handler.sendEmptyMessage(0);
 //                AdapterResh.ReshAdapter(adapter);
-//                getFriendMessage();
+                getFriendMessage();
             }
 
 
@@ -113,9 +114,10 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void startServer() {
+
         Single_personBean.DataBean.setMybean(new Single_personBean.DataBean(my_qq, friendqq));
         Intent intent = new Intent(this, DataServer.class);
-        intent.putExtra("singleChat", "singleChat");
+//        intent.putExtra("singleChat", "singleChat");
         startService(intent);
     }
 
@@ -197,7 +199,6 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
                     Log.i("sad", "onResponse: " + "数据发送成功");
                     Gson gson = new Gson();
                     Single_personBean single_personBean = gson.fromJson(jsonObject.toString(), Single_personBean.class);
-
                     list_data = single_personBean.getData();
                     Single_personBean.DataBean.setDatataBean(list_data);
                     text.setText("");
@@ -241,14 +242,17 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
             ViewHolder viewHolder = new ViewHolder(convertView);
             String[] split = list_data.get(position).getMessage_1().split(":");
             if (list_data.get(position).getMessage_1().contains(my_qq + "")) {
-                viewHolder.tx_my_message.setText(split[0] + "：我");
+                viewHolder.tx_my_message.setText(split[0]);
                 viewHolder.tx_my_message.setPadding(10, 10, 10, 10);
                 viewHolder.tx_friend_message.setPadding(0, 0, 0, 0);
+                viewHolder.tx_mytext.setText(":我");
             } else {
-                viewHolder.tx_friend_message.setText(friendname + ":" + split[0]);
+                viewHolder.tx_friend_message.setText(split[0]);
+                viewHolder.tx_friendtext.setText(friendname + ":");
                 viewHolder.tx_friend_message.setPadding(10, 10, 10, 10);
                 viewHolder.tx_friend_message.setPadding(0, 0, 0, 0);
             }
+//            viewHolder.tx_time.setText();
 
             return convertView;
         }
@@ -256,15 +260,19 @@ public class PeronActivity extends AppCompatActivity implements View.OnClickList
         public
         class ViewHolder {
             public View rootView;
-
             public TextView tx_friend_message;
-
             public TextView tx_my_message;
+            public TextView tx_time;
+            public TextView tx_mytext;
+            public TextView tx_friendtext;
 
             public ViewHolder(View rootView) {
                 this.rootView = rootView;
                 this.tx_friend_message = (TextView) rootView.findViewById(R.id.tx_friend_message);
                 this.tx_my_message = (TextView) rootView.findViewById(R.id.tx_my_message);
+                this.tx_time = (TextView) rootView.findViewById(R.id.tx_time);
+                this.tx_mytext = (TextView) rootView.findViewById(R.id.tx_mytext);
+                this.tx_friendtext = (TextView) rootView.findViewById(R.id.tx_friendtext);
             }
 
         }

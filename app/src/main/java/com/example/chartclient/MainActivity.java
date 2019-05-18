@@ -34,6 +34,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.Timer;
@@ -81,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         timer = new Timer();
         random = new Random();
         a = random.nextInt(5000);
+        getMessage();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }, 0, 3000);
         final MyDialog myDialog = new MyDialog();
-        myDialog.showMoneyDialog_kong();
+//        myDialog.showMoneyDialog_kong();
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
@@ -173,18 +175,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void getMessage() {
         JSONObject jsonObject = new JSONObject();
-        JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://234b13j093.imwork.net:55864/api/get_message", jsonObject, new Response.Listener<JSONObject>() {
+        JsonObjectRequest request = new JsonObjectRequest(JsonObjectRequest.Method.POST, "http://47.94.218.85:8080/ChartServer/get_message", jsonObject, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject jsonObject) {
                 Gson gson = new Gson();
                 Bean bean = gson.fromJson(jsonObject.toString(), Bean.class);
                 list = bean.getDataList();
-
+                Log.i("", "onResponse: "+ Arrays.asList(list));
                 adapter.notifyDataSetChanged();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
+
             }
         });
         requestQueue.add(request);

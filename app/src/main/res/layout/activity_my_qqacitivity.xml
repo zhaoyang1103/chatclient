@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backfriendshow"
+    android:background="#A100BCD4"
     android:orientation="vertical">
 
 
@@ -25,8 +25,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="1001的好友"
-            android:background="#009688"
-            android:textColor="#1B3AC5"
+            android:background="#72009688"
+            android:textColor="#000"
+            android:textStyle="italic"
             android:textSize="20dp" />
 
 

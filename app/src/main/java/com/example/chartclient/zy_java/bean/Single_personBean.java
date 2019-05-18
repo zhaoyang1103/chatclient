@@ -95,5 +95,13 @@ public class Single_personBean {
         public void setQq_2(int qq_2) {
             this.qq_2 = qq_2;
         }
+
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "qq_1=" + qq_1 +
+                    ", qq_2=" + qq_2 +
+                    '}';
+        }
     }
 }
